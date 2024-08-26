@@ -1,4 +1,4 @@
-# Call GPT: Generative AI Phone Calling
+# Call GPT: Generative AI Phone Calling 
 
 Wouldn't it be neat if you could build an app that allowed you to chat with ChatGPT on the phone?
 
