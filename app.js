@@ -19,6 +19,11 @@ ExpressWs(app);
 
 const PORT = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Hello World');
+}
+)
+
 app.post('/incoming', (req, res) => {
   try {
     const response = new VoiceResponse();
