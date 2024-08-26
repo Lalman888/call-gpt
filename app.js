@@ -13,11 +13,13 @@ const { recordingService } = require('./services/recording-service');
 const { makeOutBoundCall } = require('./scripts/outbound-call')
 
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
-
+const cors = require('cors');
 const app = express();
 ExpressWs(app);
 
 const PORT = process.env.PORT || 3000;
+
+app.use(cors()); // Enable CORS for all routes
 
 app.get('/', (req, res) => {
   res.send('Hello World');
