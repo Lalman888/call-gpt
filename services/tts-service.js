@@ -10,10 +10,14 @@ class TextToSpeechService extends EventEmitter {
     this.speechBuffer = {};
   }
 
-  async generate(gptReply, interactionCount) {
-    const { partialResponseIndex, partialResponse } = gptReply;
+  async generate(textreply, interactionCount) {
+    // const { partialResponseIndex, partialResponse } = gptReply;
 
-    if (!partialResponse) { return; }
+    // if (!partialResponse) { return; }
+
+    // const {  } = textreply;
+    console.log(textreply, " Text reply deepgram ",interactionCount);
+    // console.log(`Interaction ${interactionCount}: GPT -> TTS: ${textreply}`.green);
 
     try {
       const response = await fetch(
@@ -25,17 +29,18 @@ class TextToSpeechService extends EventEmitter {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            text: partialResponse,
+            text: textreply,
           }),
         }
       );
-
+      //  console.log(response,"Deepgram TTS response");
       if (response.status === 200) {
         try {
           const blob = await response.blob();
           const audioArrayBuffer = await blob.arrayBuffer();
           const base64String = Buffer.from(audioArrayBuffer).toString('base64');
-          this.emit('speech', partialResponseIndex, base64String, partialResponse, interactionCount);
+          // this.emit('speech', partialResponseIndex, base64String, textreply, interactionCount);
+          this.emit('speech', interactionCount, base64String, textreply, interactionCount+1);
         } catch (err) {
           console.log(err);
         }
