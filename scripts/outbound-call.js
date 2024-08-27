@@ -5,7 +5,7 @@
 
 require('dotenv').config();
 
-async function makeOutBoundCall(YOUR_NUMBER) {
+async function makeOutBoundCall(YOUR_NUMBER,FROM_NUMBER) {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   
@@ -15,7 +15,7 @@ async function makeOutBoundCall(YOUR_NUMBER) {
     .create({
       url: `https://${process.env.SERVER}/incoming`,
       to:  YOUR_NUMBER,
-      from: process.env.FROM_NUMBER
+      from: FROM_NUMBER
     })
     .then(call => console.log(call.sid));
 }

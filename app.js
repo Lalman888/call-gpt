@@ -44,9 +44,9 @@ app.post('/incoming', (req, res) => {
 app.post('/outbound-call', (req, res) => {
   try {
     // console.log('Twilio -> Outbound call'.red);
-    console.log('Twilio -> Outbound call', req.body?.to);
-    if(req.body?.to) {
-      makeOutBoundCall(req.body?.to);
+    console.log('Twilio -> Outbound call', req.body?.to,"from",req.body?.from);
+    if(req.body?.to && req.body?.from){ 
+      makeOutBoundCall(req.body?.to,req.body?.from);
     }
     res.status(200).send('Outbound call initiated',);
   } catch (err) {
