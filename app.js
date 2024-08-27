@@ -15,9 +15,10 @@ const { makeOutBoundCall } = require('./scripts/outbound-call')
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const cors = require('cors');
 const app = express();
+app.use(express.json());
 ExpressWs(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors()); // Enable CORS for all routes
 
@@ -42,12 +43,12 @@ app.post('/incoming', (req, res) => {
 
 app.post('/outbound-call', (req, res) => {
   try {
-    console.log('Twilio -> Outbound call'.red);
-    console.log('Twilio -> Outbound call', req.body, req.body?.to,req);
-    // if(req.body?.to) {
+    // console.log('Twilio -> Outbound call'.red);
+    console.log('Twilio -> Outbound call', req.body?.to);
+    if(req.body?.to) {
       makeOutBoundCall(req.body?.to);
-    // }
-    res.status(200).send('Outbound call initiated');
+    }
+    res.status(200).send('Outbound call initiated',);
   } catch (err) {
     console.log(err);
   }
