@@ -14,7 +14,7 @@ async function makeOutBoundCall(YOUR_NUMBER) {
   await client.calls
     .create({
       url: `https://${process.env.SERVER}/incoming`,
-      to: process.env.YOUR_NUMBER || YOUR_NUMBER,
+      to:  YOUR_NUMBER,
       from: process.env.FROM_NUMBER
     })
     .then(call => console.log(call.sid));
