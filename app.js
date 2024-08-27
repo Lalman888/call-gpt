@@ -88,7 +88,8 @@ app.ws('/connection', (ws) => {
           // ttsService.generate({partialResponseIndex: null, partialResponse: 
           //   'Hello, this is a test call. Please respond with your favorite color.'
           // }, 0);
-          ttsService.generate('Hello, this is a test call. Please respond with your favorite color.', 0);
+          ttsService.generate('Hello,I am The Mastermind, How can I help you today? with related healthcare or insurance queries'
+          , 0);
         });
       } else if (msg.event === 'media') {
         transcriptionService.send(msg.media.payload);
